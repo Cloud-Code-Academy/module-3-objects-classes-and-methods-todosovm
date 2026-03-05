@@ -140,17 +140,15 @@ public with sharing class ClassesObjectsMethods {
      * @return The absolute value of the difference
      */
     public static Double calculateDifferenceOfSquares(Double a, Double b) {
-    
+        if(a == null || b == null) {
+            return null;
+        }    
         Double aSquared = Math.pow(a, 2);
         Double bSquared = Math.pow(b, 2);
        
         Double result = math.abs(aSquared - bSquared);
-        if(a == null || b == null) {
-            return null;
-        } else {
-            return result;
+        return result;
         }
-    }
 
     /**
      * Question 7
@@ -162,7 +160,7 @@ public with sharing class ClassesObjectsMethods {
        
         Integer min = 50;
         Integer max = 100;
-        Integer randomNumber = min + (Integer) Math.random() * (max - min); 
+        Integer randomNumber = (Integer) (Math.random() * (max - min +1)) + min; 
         // I found that Math.random() returns double between 0 and 0.99. Struggled with this until I found that. 
         //Is there a simple way to desingate the range for random number?
         
@@ -244,7 +242,6 @@ public with sharing class ClassesObjectsMethods {
         public Book(String title, String author) {
            this.title = title;
            this.author = author;
-           this.pages = pages;
         }
     
         public String getBookDetails() {
@@ -274,12 +271,12 @@ public with sharing class ClassesObjectsMethods {
      * @param myBook1 The first book object.
      * @return return a list of books.
      */
-    public static List<Book> generateBookList(Book myBook1, String newTitle, String newAuthor, Integer newPages) {
+    public static List<Book> generateBookList(Book myBook1) {
         
         List<Book> myBookList = new List<Book>();
         
-           myBook1.author = newAuthor;
-           myBook1.title = newTitle;
+           myBook1.author = 'Harry Potter and the Chamber of Secrets';
+           myBook1.title = 'J.K. Rowling';
            myBook1.pages = 352;
     
         Book myBook2 = new Book('A Brief History of Time', 'Stephen Hawking');
@@ -361,8 +358,6 @@ public with sharing class ClassesObjectsMethods {
     public static Person createPerson(String name, Integer age) {
         // Create a new instance of the Person class using the provided name and age
         Person newPerson = new Person(name, age);
-            newPerson.setName(name);
-            newPerson.setAge(age);
         // Return the new instance of the Person class
         return newPerson; // Replace null with the variable you used to store the result
     }
